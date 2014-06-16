@@ -40,7 +40,7 @@ Trekking and hiking time rule MATLAB implementations for Naismith's rule, Naismi
 	% create plot
 	tobler(slope, track_factor)
 
-## Tranter's correctiont table ##
+## Tranter's correction table ##
 
 Correction table to Naismith's rule.
 
