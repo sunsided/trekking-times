@@ -39,3 +39,18 @@ Trekking and hiking time rule MATLAB implementations for Naismith's rule, Naismi
 
 	% create plot
 	tobler(slope, track_factor)
+
+## Tranter's correctiont table ##
+
+Correction table to Naismith's rule.
+
+* Table available in `tranter_table.m`
+* Least squares best-fit function available in `tranter.m`
+* Plotting of these two in `tranter_plot.m`
+* Fitting testbench in `tranter_fit.m`
+
+### Example ###
+
+	time = 5;           % hours
+	fitness = 25;		% Tranter minutes
+	[t] = tranter(time, fitness)
