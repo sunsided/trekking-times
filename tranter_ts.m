@@ -1,7 +1,15 @@
 function [series] = tranter_ts(interpolate)
-% TRANTER_TS Generates timeseries objects from tranter_table()
+% TRANTER_TS Generate timeseries objects from tranter_table().
+%   series = TRANTER_TS() returns one timeseries per Tranter fitness row,
+%   each indexed by Naismith hours, with the fitness value stored in
+%   UserData.
+%   series = TRANTER_TS(true) additionally resamples each timeseries to a
+%   1-hour grid.
+%
+% IN:
+%   interpolate (optional, default false) Whether to resample to 1h grid.
 % OUT:
-%   Array of timeseries objects
+%   series Column vector of timeseries objects
 
     % set default value
     if ~exist('interpolate', 'var')
@@ -38,6 +46,4 @@ function [series] = tranter_ts(interpolate)
         % register series with array
         series(i) = ts;
     end
-    
-    plot(series(3));
 end

@@ -98,8 +98,6 @@ function [w] = tobler(slope, scale)
                         rad2deg(atan(slope)), v_user_offpath, v_user_footpath);
             title(t);
         end
-        
-        clear v;
     end
     
     % Internal calculation function
