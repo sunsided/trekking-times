@@ -17,7 +17,7 @@ function [w, t, slope] = naismith_al(distance, ascend, base_speed)
         base_speed = 4; % [km/h]
     end
 
-    slope = ascend / distance;
+    slope = ascend ./ distance;
     theta = atand(slope);
 
     t = distance * (1/base_speed);

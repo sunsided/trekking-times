@@ -2,7 +2,7 @@ function [w, t, slope] = naismith(distance, ascend)
 % NAISMITH Naismith's rule for hiking time estimation.
 %   [w, t, slope] = NAISMITH(distance, ascend) returns the average walking
 %   speed w, total time t and slope for a track of the given horizontal
-%   distance and vertical ascend.
+%   distance and vertical ascent.
 %
 % IN:
 %   distance and ascend in [km]

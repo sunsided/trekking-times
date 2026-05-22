@@ -5,8 +5,7 @@ classdef TrekkingTimesTest < matlab.unittest.TestCase
         function addRepoToPath(testCase)
             here = fileparts(mfilename('fullpath'));
             repoRoot = fileparts(here);
-            addpath(repoRoot);
-            testCase.addTeardown(@() rmpath(repoRoot));
+            testCase.applyFixture(matlab.unittest.fixtures.PathFixture(repoRoot));
         end
     end
 
