@@ -49,7 +49,7 @@ coeffs(:,1) = mean_slope;
 %end
 
 % build legend strings
-egend_titles= {};
+legend_titles = {};
 for i=1:size(table,1)
     legend_titles{i} = sprintf('e^{(%.2f*ln(t)%+.2f)}', coeffs(i,1), coeffs(i,2));
 end

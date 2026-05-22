@@ -1,5 +1,14 @@
 function [table, hours, fitness] = tranter_table()
-% added Tranter's correction table to Naismith's rule
+% TRANTER_TABLE Tranter's correction table for Naismith's rule.
+%   [table, hours, fitness] = TRANTER_TABLE() returns the original Tranter
+%   correction table together with the row (fitness, in minutes) and
+%   column (Naismith time, in hours) labels. NaN marks combinations that
+%   are not given in the table.
+%
+% OUT:
+%   table   Correction matrix of size length(fitness) x length(hours) [h]
+%   hours   Vector of Naismith hours [h]
+%   fitness Vector of Tranter fitness levels [min]
 
 hours   = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 22, 24];
 fitness = [15, 20, 25, 30, 40, 50];

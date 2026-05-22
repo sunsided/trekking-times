@@ -1,56 +1,80 @@
-# Trekking and Hiking Times #
+# Trekking and Hiking Times
 
-Trekking and hiking time rule MATLAB implementations for Naismith's rule, Naismith's rule with Aitken-Langmuir corrections and Tobler's rule.
+MATLAB implementations of common trekking and hiking time rules:
 
-## Naismith's rule ##
+- **Naismith's rule** — original 1892 estimate of walking time from distance and ascent.
+- **Naismith's rule with Aitken–Langmuir corrections** — adjustments for variable base speed and descent.
+- **Tobler's hiking function** — exponential walking speed model as a function of slope.
+- **Tranter's correction table** — fitness-dependent correction applied on top of Naismith times, plus a closed-form best-fit approximation.
 
-* Function available in `naismith.m`
-* Example plot available in `naismith_plot.m`
+## Requirements
 
-### Example ###
+- MATLAB R2018a or newer (older versions likely work; the test suite uses `matlab.unittest`).
 
-	track_length = 20;  % km
-	ascend = 1;         % km
-	[w, t] = naismith(track_length, ascend)
+## Naismith's rule
 
+- Function: [`naismith.m`](naismith.m)
+- Example plot: [`naismith_plot.m`](naismith_plot.m)
 
-## Naismith's rule with Aitken-Langmuir corrections ##
+```matlab
+distance = 20;  % km
+ascend   = 1;   % km
+[w, t] = naismith(distance, ascend)
+```
 
-* Function available in `naismith_al.m`
-* Example plot available in `naismith_al_plot.m`
+## Naismith's rule with Aitken–Langmuir corrections
 
-### Example ###
+- Function: [`naismith_al.m`](naismith_al.m)
+- Example plot: [`naismith_al_plot.m`](naismith_al_plot.m)
 
-	base_speed = 4;     % km /h
-	track_length = 20;  % km
-	ascend = 1;         % km
-	[w, t] = naismith_al(track_length, ascend)
+```matlab
+distance   = 20;  % km
+ascend     = 1;   % km
+base_speed = 4;   % km/h
+[w, t] = naismith_al(distance, ascend, base_speed)
+```
 
-## Tobler's rule ##
+## Tobler's hiking function
 
-* Function available in `tobler.m`
-* Plot will be generated when called without return parameter
+- Function: [`tobler.m`](tobler.m)
+- Calling without an output argument produces a plot.
 
-### Example ###
+```matlab
+slope        = tand(10);  % tand(degree)
+track_factor = 1;         % 1 for footpaths, 0.6 for off-path
+w = tobler(slope, track_factor)
 
-	slope = tand(10);   % tand(degree)
-	track_factor = 1;   % e.g. 1 (footpaths), 0.6 (off-path)
-	[w] = tobler(slope, track_factor)
+% Generate the explanatory plot
+tobler(slope, track_factor)
+```
 
-	% create plot
-	tobler(slope, track_factor)
+## Tranter's correction table
 
-## Tranter's correction table ##
+A correction table applied on top of Naismith's rule.
 
-Correction table to Naismith's rule.
+- Table: [`tranter_table.m`](tranter_table.m)
+- Least-squares best-fit function: [`tranter.m`](tranter.m)
+- Plot of table vs. fit: [`tranter_plot.m`](tranter_plot.m)
+- Fitting testbench: [`tranter_fit.m`](tranter_fit.m)
+- Timeseries view of the table: [`tranter_ts.m`](tranter_ts.m)
 
-* Table available in `tranter_table.m`
-* Least squares best-fit function available in `tranter.m`
-* Plotting of these two in `tranter_plot.m`
-* Fitting testbench in `tranter_fit.m`
+```matlab
+t       = 5;   % hours (Naismith base time)
+fitness = 25;  % Tranter fitness in minutes
+tcorrected = tranter(t, fitness)
+```
 
-### Example ###
+## Running the tests
 
-	time = 5;           % hours
-	fitness = 25;		% Tranter minutes
-	[t] = tranter(time, fitness)
+The repository ships with a small `matlab.unittest` suite under [`tests/`](tests/).
+
+```matlab
+results = runtests('tests');
+disp(results);
+```
+
+A GitHub Actions workflow runs the same suite on every push and pull request — see [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
